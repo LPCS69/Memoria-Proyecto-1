@@ -6,14 +6,32 @@
 void mainGUI::faseTapeDestape(){
     if(tarjetasDestapadas.length() == limite_destape){
         destape = false;
+        encontrarParejas();
     }
     if(tarjetasDestapadas.length()== 0){
         destape = true;
-        //cont_destape
     }
 }
-void mainGUI::handleButton0(){
+void mainGUI::quitarEncontradas(int num){
+    if(num == 0 ){boton0->close();}
+    if(num == 1 ){boton1->close();}
+    if(num == 2 ){boton2->close();}
+    if(num == 3 ){boton3->close();}
+    if(num == 4 ){boton4->close();}
+    if(num == 5 ){boton5->close();}
+    if(num == 6 ){boton6->close();}
+    if(num == 7){boton7->close();}
+}
+void mainGUI::encontrarParejas(){
+    if (tarjetas.value(tarjetasDestapadas.value(0))==tarjetas.value(tarjetasDestapadas.value(1))) {
+        quitarEncontradas(tarjetasDestapadas.value(0));
+        quitarEncontradas(tarjetasDestapadas.value(1));
+        tarjetasDestapadas.clear();
+        faseTapeDestape();
+    }
+}
 
+void mainGUI::handleButton0(){
     if( destape ==  false){
         //destape = true;
         if (tarjetasDestapadas.contains(0)){
@@ -40,9 +58,11 @@ void mainGUI::handleButton0(){
 
 
 void mainGUI::handleButton1(){
+    //destroyed(QObject(encontradas.value(0)));
+    //encontradas.value(0).close();
+    //botones.value(0)->destroyed();
     if( destape ==  false){
         //destape = true;
-
 
         if (tarjetasDestapadas.contains(1)){
 
@@ -262,6 +282,10 @@ mainGUI::mainGUI(QWidget *parent): QMainWindow(parent) {
     connect(boton5, SIGNAL (pressed()), this, SLOT(handleButton5()));
     connect(boton6, SIGNAL (pressed()), this, SLOT(handleButton6()));
     connect(boton7, SIGNAL (pressed()), this, SLOT(handleButton7()));
+    //encontradas.append(QPushButton(boton6));
+    //encontradas.append(QVector <QPushButton> (botones));
+    //encontradas.operator+({boton7,boton6});
+    //botones.append(QPushButton({boton7}));
     ventana.show();
 }
 
