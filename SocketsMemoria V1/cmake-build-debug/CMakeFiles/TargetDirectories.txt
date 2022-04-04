@@ -1,0 +1,8 @@
+/home/pablo/CLionProjects/SocketsMemoria V1/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/pablo/CLionProjects/SocketsMemoria V1/cmake-build-debug/CMakeFiles/CLIENT.dir
+/home/pablo/CLionProjects/SocketsMemoria V1/cmake-build-debug/CMakeFiles/MAIN.dir
+/home/pablo/CLionProjects/SocketsMemoria V1/cmake-build-debug/CMakeFiles/SERVER.dir
+/home/pablo/CLionProjects/SocketsMemoria V1/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/pablo/CLionProjects/SocketsMemoria V1/cmake-build-debug/CMakeFiles/CLIENT_autogen.dir
+/home/pablo/CLionProjects/SocketsMemoria V1/cmake-build-debug/CMakeFiles/MAIN_autogen.dir
+/home/pablo/CLionProjects/SocketsMemoria V1/cmake-build-debug/CMakeFiles/SERVER_autogen.dir
