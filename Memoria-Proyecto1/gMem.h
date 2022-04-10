@@ -14,13 +14,15 @@
 #include <time.h>
 #include <QLabel>
 #include <string>
+#include <QComboBox>
+#include <QVBoxLayout>
 class gMem: public QMainWindow{
         Q_OBJECT
         public:
         explicit  gMem(QWidget *parent = nullptr);
         virtual ~gMem();
         void cola_aleatoria();
-        void cargar_nuevo();
+        void remplazo();
         void refrescar_botones();
         void cargar_espacios_libres();
         void mostrar_variables_enDisco();
@@ -37,8 +39,9 @@ class gMem: public QMainWindow{
         int limite_destape = 2;
         int cont_destape = 0;
         QString sin_cargar;
-        QLabel * label_espacio = new QLabel(&ventana);
-        QLabel * label_enDisco = new QLabel(&ventana);
+        QComboBox   * cb = new QComboBox(&ventana);
+        QLabel      * label_espacio = new QLabel(&ventana);
+        QLabel      * label_enDisco = new QLabel(&ventana);
         QPushButton * boton0 = new QPushButton("Memoria", &ventana);
         QPushButton * boton1 = new QPushButton( &ventana);
         QPushButton * boton2 = new QPushButton(&ventana);
