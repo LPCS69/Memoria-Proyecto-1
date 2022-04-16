@@ -41,6 +41,7 @@ public:
     QPushButton * boton9 = new QPushButton(QIcon(QPixmap("Front-Card")), nullptr,& ventana);
 
 private slots:
+
     void faseTapeDestape();
     void handleButton0();
     void handleButton1();
