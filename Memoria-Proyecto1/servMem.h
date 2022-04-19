@@ -49,16 +49,28 @@ class servMem: public QMainWindow{
         void referencias_busqueda();
         void remplazo();
         void refrescar_botones();
+        void limpiar_botones();
         void cargar_espacios_libres();
         void mostrar_variables_enDisco();
+        void mostrar_imagenes_enjuego();
         void mostrar_posiciones_asignadas();
         void cargar_datos_enmemoria();
         void referencias_posiciones();
+        void respaldo_imagenesenmemoria();
+        void cargar_resplado();
+        void encontrar_pareja();
+        void quitar_pareja();
+        void castear_seleccion(QString);
         QWidget ventana;
         QVector <int> tarjetasTapadas{0,1,2,3,4,5,6,7};
-        QVector <int> tarjetasDestapadas{};
+        //QVector <int> tarjetasDestapadas{};
         QVector <int> encontradas{};
-        int seleccion;
+        int turno =1;
+        int parejas_jugador1 = 0;
+        int parejas_jugador2 = 0;
+        QVector <QString> imagenes_enmemoria;
+        int imagen_seleccion;
+        QString seleccion_jugador;
         int aleatorio;
         QQueue <int> enmemoria;
         QQueue <QObject> tarjetas_enmemoria;
@@ -76,18 +88,20 @@ class servMem: public QMainWindow{
         int espacio_enmemoria;
         bool destape = true;
         int limite_destape = 2;
+        QVector <QString> tarjetas_seleccionadas;
+        QVector <QString> imagenes_destapadas;
         int cont_destape = 0;
         QString posiciones_asignadas;
         QString sin_cargar;
-        QComboBox   * cb = new QComboBox(&ventana);
-        QComboBox   * cb_posiciones = new QComboBox(&ventana);
+        QString imagenes_enjuego;
+
         QLabel      * label_espacio = new QLabel(&ventana);
         QLabel      * label_enDisco = new QLabel(&ventana);
         QLabel      * label_posiciones = new QLabel(&ventana);
-        QLabel      * label_referencias = new QLabel(&ventana);
         QLabel      * label_imagenes = new QLabel(&ventana);
-        QLabel      * label_busqueda = new QLabel(&ventana);
-        QPushButton * boton0 = new QPushButton("Memoria", &ventana);
+        QLabel      * label_turno_enjuego = new QLabel( & ventana);
+        QLabel      * label_jugador1 = new QLabel( & ventana);
+        QLabel      * label_jugador2 = new QLabel( & ventana);
         QPushButton * boton1 = new QPushButton( &ventana);
         QPushButton * boton2 = new QPushButton(&ventana);
         QPushButton * boton3 = new QPushButton(&ventana);
@@ -98,16 +112,11 @@ class servMem: public QMainWindow{
         QPushButton * boton8 = new QPushButton(&ventana);
         QPushButton * boton9 = new QPushButton(&ventana);
         QPushButton * boton10 = new QPushButton(&ventana);
-        QPushButton * boton11 = new QPushButton("Quitar", &ventana);
-        QPushButton * boton_posiciones = new QPushButton("Posiciones", &ventana);
 /***********************************************************************************************************************/
-    QPushButton * b_enviar = new QPushButton("ENVIAR",&ventana);
-    QPushButton * b_recibir = new QPushButton("RECIBIR",&ventana);
-    QPushButton * b_conectar = new QPushButton("CONECTAR",&ventana);
-    QPushButton * b_buscar = new QPushButton("Buscar",&ventana);
-    QComboBox   * cb_buscar = new QComboBox(&ventana);
+    QPushButton * boton_enviar = new QPushButton("ENVIAR",&ventana);
+    QPushButton * boton_recibir = new QPushButton("RECIBIR",&ventana);
+    QPushButton * boton_conectar = new QPushButton("CONECTAR",&ventana);
     QLabel      * eti = new QLabel(&ventana);
-    QComboBox   * cb_sockets = new QComboBox(&ventana);
 
 private slots:
         void paginacion();

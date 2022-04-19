@@ -232,7 +232,7 @@ mainGUI::mainGUI(QWidget *parent): QMainWindow(parent) {
 
     QPixmap backCardIMage("Back-Card.jpg");
     QIcon buttonIcon(backCardIMage);
-    QSize sizeButton(95,100);
+    QSize sizeButton(75,80);
     //QSize sizeButton.setWidth(95);
     //QSize sizeButton.setHeight(100);
 

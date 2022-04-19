@@ -26,11 +26,11 @@ public:
     QVector <int> tarjetasTapadas{0,1,2,3,4,5,6,7};
     QVector <int> tarjetasDestapadas{};
     QVector <int> encontradas{};
-    QVector <QString> tarjetas {"c0","c3","c2","c1","c3","c2","c0","c1"};
+    QVector <QString> tarjetas {"c0","c03","c02","c01","c03","c02","c0","c01"};
     bool destape = true;
     int limite_destape = 2;
     int cont_destape = 0;
-    QPushButton * boton0 = new QPushButton("GIRAR", &ventana);
+    QPushButton * boton0 = new QPushButton( "GIRAR",&ventana);
     QPushButton * boton1 = new QPushButton("GIRAR", &ventana);
     QPushButton * boton2 = new QPushButton("GIRAR", &ventana);
     QPushButton * boton3 = new QPushButton("GIRAR", &ventana);

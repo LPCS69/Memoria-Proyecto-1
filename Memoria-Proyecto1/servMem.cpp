@@ -46,7 +46,7 @@ void servMem::mostrar_variables_enDisco() {
     if(enmemoria.empty()){
     while (cont < tarjetas.length()){
             sin_cargar = sin_cargar + "|" + tarjetas.value(cont) + "\n";
-            cb->addItem(tarjetas.value(cont));
+            //cb->addItem(tarjetas.value(cont));
             cont++;
     }
     }
@@ -59,6 +59,16 @@ void servMem::mostrar_variables_enDisco() {
         }
     }
     label_enDisco->setText(sin_cargar+"|"+"ext:"+ "\n"+"|"+QString::number(tarjetas.length()));
+}
+void servMem::mostrar_imagenes_enjuego() {
+    int cont = 0;
+    imagenes_enjuego = "";
+        while (cont < tarjetas.length()){
+            imagenes_enjuego = imagenes_enjuego + "|" + tarjetas.value(cont) + "\n";
+            cont++;
+        }
+    label_imagenes->setText(imagenes_enjuego+"\n");
+
 }
 /**
  * Este metodo se encarga de mostrar las posiciones de la martiz del juego que se le han asignado a cada imagen
@@ -84,18 +94,11 @@ void servMem::mostrar_posiciones_asignadas()  {
 
 void servMem::referencias_posiciones(){
     int cont = 0;
-    while (cont < 30){
-        cb_posiciones->addItem(tarjetas.value(cont));
+    while (cont < tarjetas.length()){
         cont++;
     }
 }
-void servMem::referencias_busqueda(){
-    int cont = 0;
-    while (cont < 60){
-        cb_buscar->addItem(posiciones.value(cont));
-        cont++;
-    }
-}
+
 /**
  * Este metodo se encarga de mostrar las posiciones de la martiz del juego que se le han asignado a cada imagen
  *
@@ -103,9 +106,7 @@ void servMem::referencias_busqueda(){
 void servMem::mostrar_posiciones()  {
     QString str;
     QVector <QString>temp;
-    temp = posiciones_imagenes.value(cb_posiciones->currentIndex());
     str = temp.value(0)+ " - "+temp.value(1);
-    label_referencias->setText(str);
 }
 /**
  * Este metodo llena con valores escogidos de forma aleatoria la Cola que simula ser la memoria virtual
@@ -130,6 +131,7 @@ void servMem::barajar() {
         if (posiciones_barajadas.contains(posiciones.value(num))==false){
             posiciones_barajadas.push_front(posiciones.value(num));}
     }
+    this->cortar_baraja();
 }
 void servMem::cortar_baraja() {
     QVector <QString> vector_temp;
@@ -143,39 +145,27 @@ void servMem::cortar_baraja() {
         cont = cont +2;
 
     }
-
 }
 
 void servMem::cargar_datos_enmemoria(){
-    if(!enmemoria.contains(seleccion)){
-    enmemoria.push_front(seleccion);}
+    if(!enmemoria.contains(imagen_seleccion)){
+    enmemoria.push_front(imagen_seleccion);}
 };
 
 void servMem::buscar_imagen() {
     int cont = 0;
-    while (!posiciones_imagenes.value(cont).contains(cb_buscar->currentText())){
+    while (!posiciones_imagenes.value(cont).contains(seleccion_jugador)){
         cont++;
     }
-    seleccion = cont;
-    label_busqueda->setText(tarjetas.value(cont));
+    imagen_seleccion = cont;
     this->paginacion();
+    boton_enviar->setEnabled(true);
 }
 
-/**
-void servMem::remplazo_aleatorio(){
-    int num;
-    srand(time(NULL));
-    num = rand() % tarjetas.length();
-    while(enmemoria.contains(num)== true){
-        num = rand() % tarjetas.length();}
-    enmemoria.pop_back();
-    enmemoria.push_front(num);
-}
-*/
 void servMem::remplazo(){
-    if(!enmemoria.contains(seleccion)){
+    if(!enmemoria.contains(imagen_seleccion)){
     enmemoria.pop_back();
-    enmemoria.push_front(seleccion);
+    enmemoria.push_front(imagen_seleccion);
     }
 }
 void servMem::cargar_espacios_libres(){
@@ -189,9 +179,22 @@ void servMem::cargar_espacios_libres(){
     enmemoria.push_front(num);
     }
 }
+void servMem::limpiar_botones(){
+    boton1->setText("");
+    if(espacio_enmemoria > 1  & enmemoria.length()>1){boton2->setText("");}
+    if(espacio_enmemoria > 2  & enmemoria.length()>2){boton3->setText("");}
+    if (espacio_enmemoria > 3 & enmemoria.length()>3){boton4->setText("");}
+    if (espacio_enmemoria > 4 & enmemoria.length()>4){boton5->setText("");}
+    if (espacio_enmemoria > 5 & enmemoria.length()>5){boton6->setText("");}
+    if (espacio_enmemoria > 6 & enmemoria.length()>6){boton7->setText("");}
+    if (espacio_enmemoria > 7 & enmemoria.length()>7){boton8->setText("");}
+    if (espacio_enmemoria > 8 & enmemoria.length()>8){boton9->setText("");}
+    if (espacio_enmemoria > 9 & enmemoria.length()>9){boton10->setText("");}
+}
 
 void servMem::refrescar_botones(){
-    boton1->setText(tarjetas.value(enmemoria.value(0)));
+    if(!enmemoria.empty()){
+    boton1->setText(tarjetas.value(enmemoria.value(0)));}
     if(espacio_enmemoria > 1  & enmemoria.length()>1){boton2->setText(tarjetas.value(enmemoria.value(1)));}
     if(espacio_enmemoria > 2  & enmemoria.length()>2){boton3->setText(tarjetas.value(enmemoria.value(2)));}
     if (espacio_enmemoria > 3 & enmemoria.length()>3){boton4->setText(tarjetas.value(enmemoria.value(3)));}
@@ -213,23 +216,17 @@ void servMem::paginacion(){
 }
 
 void servMem::quitar(){
-    if(!enmemoria.empty()){
     if (0<tarjetas.length()){
+        //tarjetas.pop_back();
+        //enmemoria.removeAll(imagen_seleccion);
 
-        tarjetas.pop_back();
-        enmemoria.removeAll(tarjetas.length());
-        espacio_enmemoria = tarjetas.length()/3;
-        label_espacio->setText(QString(QString::number(espacio_enmemoria)));
         if (espacio_enmemoria < 10){boton10->close();}; if (espacio_enmemoria < 9){boton9->close();};
         if (espacio_enmemoria <  8){boton8 ->close();}; if (espacio_enmemoria < 7){boton7->close();};
         if (espacio_enmemoria <  6){boton6 ->close();}; if (espacio_enmemoria < 5){boton5->close();};
         if (espacio_enmemoria <  4){boton4 ->close();}; if (espacio_enmemoria < 3){boton3->close();};
         if (espacio_enmemoria <  2){boton2 ->close();}; if (espacio_enmemoria < 1){boton1->close();};
 
-        cargar_espacios_libres();
-        refrescar_botones();
-        mostrar_variables_enDisco();
-    } } };
+    }  };
 void servMem::Server() {
     server = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
 
@@ -254,6 +251,7 @@ void servMem::Server() {
         //  printf("Cliente conectado!");
     }
     memset(buffer, 0, sizeof(buffer));
+    boton_conectar->setEnabled(false);
 }
 void servMem::Recibir()
 {
@@ -268,7 +266,11 @@ void servMem::Recibir()
     * mensaje =NULL;
     strcat(strcpy(mensaje, mensaje), buffer);
     eti->setText(QString(mensaje));
+    seleccion_jugador = mensaje;
     memset(buffer, 0, sizeof(buffer));
+    boton_recibir->setEnabled(false);
+    buscar_imagen();
+
 
 }
 void servMem::Enviar()
@@ -276,25 +278,91 @@ void servMem::Enviar()
     //cout<<"Escribe el mensaje a enviar: ";
     //cin>>this->buffer;
     //std::string cadenaStd = cb_sockets->currentText().toStdString();
-    std::string cadenaStd = cb_sockets->currentText().toStdString();
-    *buffer = cadenaStd[0];
+    //std::string cadenaStd = tarjetas.value(seleccion).toStdString();
+    //*buffer = cadenaStd[0];
+    std::string string_temp = tarjetas.value(imagen_seleccion).toStdString();
+    char const * char_temp = &string_temp[0];
+    strcat(strcpy(buffer, buffer),char_temp );
     send(client, buffer, sizeof(buffer), 0);
     memset(buffer, 0, sizeof(buffer));
     //cout << "Mensaje enviado!" << endl;
+    boton_enviar->setEnabled(false);
+    boton_recibir->setEnabled(true);
+    tarjetas_seleccionadas.append(seleccion_jugador);
+    imagenes_destapadas.append(tarjetas.value(imagen_seleccion));
+    //std::string string_prueba = tarjetas_seleccionadas.last().toStdString();
+    std::string string_prueba = imagenes_destapadas.last().toStdString();
+    char const * prueba = &string_prueba[0];
+    std::cout << prueba << std::endl;
+    encontrar_pareja();
+}
+void servMem::respaldo_imagenesenmemoria() {
+    int cont =0;
+    while (cont < enmemoria.length()){
+        imagenes_enmemoria.append(tarjetas.value(enmemoria.value(cont)));
+        cont++;
+    }
+}
+void servMem::cargar_resplado(){
+    int cont = 0;
+    while (cont < imagenes_enmemoria.length()){
+        enmemoria.append(tarjetas.indexOf(imagenes_enmemoria.value(cont)));
+        cont++;
+    }
+    imagenes_enmemoria.clear();
+}
+
+void servMem::encontrar_pareja() {
+    if (tarjetas_seleccionadas.length() == limite_destape){
+        if (imagenes_destapadas.value(0)== imagenes_destapadas.value(1)){
+            this->limpiar_botones();
+            std::cout << "Son Pareja" << std::endl;
+            //enmemoria.removeAll(imagen_seleccion);
+            this->respaldo_imagenesenmemoria();
+            enmemoria.clear();
+            imagenes_enmemoria.removeAll(tarjetas.value(imagen_seleccion));
+            tarjetas.removeAll(tarjetas.value(imagen_seleccion));
+            this->cargar_resplado();
+            espacio_enmemoria = tarjetas.length()/3;
+            label_espacio->setText(QString(QString::number(espacio_enmemoria)));
+            this->quitar();
+            posiciones.removeAll(tarjetas_seleccionadas.value(0));
+            posiciones.removeAll(tarjetas_seleccionadas.value(1));
+            posiciones_barajadas.clear();
+            posiciones_imagenes.clear();
+            this->mostrar_variables_enDisco();
+            this->mostrar_imagenes_enjuego();
+            this->barajar();
+            this->mostrar_posiciones_asignadas();
+            refrescar_botones();
+            if(turno== 1){
+                parejas_jugador1++;
+                label_jugador1->setText("Jugador 1:  " + QString::number(parejas_jugador1));
+            }
+            else {
+                parejas_jugador2++;
+                label_jugador2->setText("Jugador 2:  " + QString::number(parejas_jugador2));
+            }
+
+        }
+        if (turno == 1){
+            turno =2;
+            label_turno_enjuego->setText("Turno: Jugador 2");
+
+        }
+        else{
+            turno =1;
+            label_turno_enjuego->setText("Turno: Jugador 1");
+
+        }
+        tarjetas_seleccionadas.clear();
+        imagenes_destapadas.clear();
+    }
+}
+void servMem::quitar_pareja() {
+
 }
 servMem::servMem(QWidget *parent): QMainWindow(parent) {
-
-    tarjeta * espacio_0 = new tarjeta();
-    tarjeta * espacio_1 = new tarjeta();
-    tarjeta * espacio_2 = new tarjeta();
-    tarjeta * espacio_3 = new tarjeta();
-    tarjeta * espacio_4 = new tarjeta();
-    tarjeta * espacio_5 = new tarjeta();
-    tarjeta * espacio_6 = new tarjeta();
-    tarjeta * espacio_7 = new tarjeta();
-    tarjeta * espacio_8 = new tarjeta();
-    tarjeta * espacio_9 = new tarjeta();
-
 
     ventana.resize(720, 720);
     ventana.setStyleSheet("QWidget {background-color:black}");
@@ -314,7 +382,8 @@ servMem::servMem(QWidget *parent): QMainWindow(parent) {
     label_imagenes->setFixedSize(35,550);
     label_imagenes->move(580,90);
     label_imagenes->setStyleSheet("QWidget {background-color: purple}");
-    label_imagenes->setText(sin_cargar+"\n");
+    this->mostrar_imagenes_enjuego();
+
 
     this->barajar();
     this->mostrar_posiciones_asignadas();
@@ -322,25 +391,25 @@ servMem::servMem(QWidget *parent): QMainWindow(parent) {
     label_posiciones->move(620,90);
     label_posiciones->setStyleSheet("QWidget {background-color:white}");
 
+    label_turno_enjuego->setFixedSize(155,55);
+    label_turno_enjuego->move(50,100);
+    label_turno_enjuego->setText("Turno: Jugador 1");
+    label_turno_enjuego->setStyleSheet("QWidget {color:gold}");
 
-    cb->setFixedSize(55,30);
-    cb->move(135, 205);
-    cb->setStyleSheet("QWidget {border: 1px solid white }");
-    cb->setStyleSheet("QWidget {background-color:purple}");
+    label_jugador1->setFixedSize(155,55);
+    label_jugador1->move(50,160);
+    label_jugador1->setText("Jugador 1:  " + QString::number(parejas_jugador1));
+    label_jugador1->setStyleSheet("QWidget {color:red}");
+
+    label_jugador2->setFixedSize(155,55);
+    label_jugador2->move(50,220);
+    label_jugador2->setText("Jugador 2:  "+ QString::number(parejas_jugador1));
+    label_jugador2->setStyleSheet("QWidget {color:blue}");
 
     QSize sizeButton(75,80);
     this->referencias_posiciones();
-    cb_posiciones->setFixedSize(55,30);
-    cb_posiciones->move(135, 475);
-    cb_posiciones->setStyleSheet("QWidget {border: 1px solid white }");
-    cb_posiciones->setStyleSheet("QWidget {background-color:blue}");
-    boton_posiciones->move(20,475 );boton_posiciones->setFixedSize(95,65);boton_posiciones->setStyleSheet("QWidget {background-color:blue}");
-    label_referencias->setFixedSize(55,25);
-    label_referencias->move(135,510);
-    label_referencias->setStyleSheet("QWidget {background-color:white}");
-    this->cortar_baraja();
-    boton0->move(20,205);boton0->setFixedSize(sizeButton);boton0->setStyleSheet("QWidget {background-color:purple}");
-    boton11->move(20,320 );boton11->setFixedSize(sizeButton);boton11->setStyleSheet("QWidget {background-color:yellow}");
+
+
     boton1 ->move(350,90);boton1->setFixedSize(sizeButton);boton1->setStyleSheet("QWidget {background-color:green}");
     boton2 ->move(350,205);boton2->setFixedSize(sizeButton);boton2->setStyleSheet("QWidget {background-color:green}");
     boton3 ->move(350,320);boton3->setFixedSize(sizeButton);boton3->setStyleSheet("QWidget {background-color:green}");
@@ -355,47 +424,22 @@ servMem::servMem(QWidget *parent): QMainWindow(parent) {
  * Estos son los objetos de la interfaz encargada de manejar la comunicación entre sockets
  */
     QSize sizeButton2(85,25);
-    b_enviar->move(20, 610);b_enviar->setFixedSize(sizeButton2);
-    b_enviar->setStyleSheet("QWidget {background-color:green}");
+    boton_enviar->move(20, 610);boton_enviar->setFixedSize(sizeButton2);
+    boton_enviar->setStyleSheet("QWidget {background-color:green}");
+    boton_enviar->setEnabled(false);
+    boton_recibir->move(20, 640);boton_recibir->setFixedSize(sizeButton2);
+    boton_recibir->setStyleSheet("QWidget {background-color:gold}");
 
-    b_recibir->move(20, 640);b_recibir->setFixedSize(sizeButton2);
-    b_recibir->setStyleSheet("QWidget {background-color:gold}");
-
-    b_conectar->move(20, 670);b_conectar->setFixedSize(sizeButton2);
-    b_conectar->setStyleSheet("QWidget {background-color:navy}");
+    boton_conectar->move(20, 670);boton_conectar->setFixedSize(sizeButton2);
+    boton_conectar->setStyleSheet("QWidget {background-color:navy}");
 
     eti->move(120, 640);
-    const char *str1 = "QWidget {background-color:gold}";
-    eti->setStyleSheet(str1);
+    eti->setStyleSheet("QWidget {background-color:gold}");
     eti->setFixedSize(45, 20);
 
-    b_buscar->move(20,105);b_buscar->setFixedSize(sizeButton);b_buscar->setStyleSheet("QWidget {background-color:maroon}");
-    cb_buscar->setFixedSize(45, 20);
-    cb_buscar->move(125, 105);
-    cb_buscar->setStyleSheet("QWidget {border: 1px solid white}");
-    cb_buscar->setStyleSheet("QWidget {background-color:maroon}");
-    label_busqueda->setFixedSize(55,25);
-    label_busqueda->move(125,140);
-    label_busqueda->setStyleSheet("QWidget {background-color:white}");
-    this->referencias_busqueda();
-    cb_sockets->setFixedSize(45, 20);
-    cb_sockets->move(120, 610);
-    cb_sockets->setStyleSheet("QWidget {border: 1px solid white}");
-    cb_sockets->setStyleSheet("QWidget {background-color:purple}");
-    cb_sockets->addItem("A");
-    cb_sockets->addItem("B");
-    cb_sockets->addItem("C");
-    cb_sockets->addItem("D");
-    cb_sockets->addItem("E");
-    cb_sockets->addItem("F");
-    cb_sockets->addItem("G");
-    connect(boton0, SIGNAL (clicked()), this, SLOT(paginacion()));
-    connect(boton11, SIGNAL (clicked()), this, SLOT(quitar()));
-    connect(boton_posiciones, SIGNAL (clicked()), this, SLOT(mostrar_posiciones()));
-    connect(b_enviar, SIGNAL (clicked()), this, SLOT(Enviar()));
-    connect(b_recibir, SIGNAL (clicked()), this, SLOT(Recibir()));
-    connect(b_conectar, SIGNAL (clicked()), this, SLOT(Server()));
-    connect(b_buscar, SIGNAL (clicked()), this, SLOT(buscar_imagen()));
+    connect(boton_enviar, SIGNAL (clicked()), this, SLOT(Enviar()));
+    connect(boton_recibir, SIGNAL (clicked()), this, SLOT(Recibir()));
+    connect(boton_conectar, SIGNAL (clicked()), this, SLOT(Server()));
     ventana.show();
 }
 /**
