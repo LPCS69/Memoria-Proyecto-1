@@ -105,7 +105,7 @@ class servidorMemoria: public QMainWindow{
     QPushButton * boton_enviar = new QPushButton("ENVIAR",&ventana);
     QPushButton * boton_recibir = new QPushButton("RECIBIR",&ventana);
     QPushButton * boton_conectar = new QPushButton("CONECTAR",&ventana);
-    QLabel      * eti = new QLabel(&ventana);
+    QLabel      * label_recibir = new QLabel(&ventana);
 
 private slots:
         void paginacion();

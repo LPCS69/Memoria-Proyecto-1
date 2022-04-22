@@ -255,7 +255,7 @@ void servidorMemoria::Recibir(){
 
     * mensaje =NULL;
     strcat(strcpy(mensaje, mensaje), buffer);
-    eti->setText(QString(mensaje));
+    label_recibir->setText(QString(mensaje));
     seleccion_jugador = mensaje;
     memset(buffer, 0, sizeof(buffer));
     boton_recibir->setEnabled(false);
@@ -280,6 +280,7 @@ void servidorMemoria::Enviar(){
     char const * prueba = &string_prueba[0];
     std::cout << prueba << std::endl;
     encontrar_pareja();
+    label_recibir->setText("");
 }
 /**
  * Lo que se guarda en memoria son refrencias de las posiciones de las imagenes del vector donde estan guardadas,
@@ -425,9 +426,9 @@ servidorMemoria::servidorMemoria(QWidget *parent): QMainWindow(parent) {
     boton_recibir->move(20, 550);boton_recibir->setFixedSize(sizeButton2);
     boton_recibir->setStyleSheet("QWidget {background-color:gold}");
 
-    eti->move(120, 550);
-    eti->setStyleSheet("QWidget {background-color:gold}");
-    eti->setFixedSize(45, 20);
+    label_recibir->move(120, 550);
+    label_recibir->setStyleSheet("QWidget {background-color:gold}");
+    label_recibir->setFixedSize(45, 20);
 
     boton_enviar->move(20, 580);boton_enviar->setFixedSize(sizeButton2);
     boton_enviar->setStyleSheet("QWidget {background-color:green}");
