@@ -1,8 +1,0 @@
-/home/pablo/CLionProjects/Memoria-Proyecto1/cmake-build-debug/CMakeFiles/Memoria_Proyecto1.dir
-/home/pablo/CLionProjects/Memoria-Proyecto1/cmake-build-debug/CMakeFiles/Servidor.dir
-/home/pablo/CLionProjects/Memoria-Proyecto1/cmake-build-debug/CMakeFiles/Cliente.dir
-/home/pablo/CLionProjects/Memoria-Proyecto1/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/pablo/CLionProjects/Memoria-Proyecto1/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/pablo/CLionProjects/Memoria-Proyecto1/cmake-build-debug/CMakeFiles/Memoria_Proyecto1_autogen.dir
-/home/pablo/CLionProjects/Memoria-Proyecto1/cmake-build-debug/CMakeFiles/Servidor_autogen.dir
-/home/pablo/CLionProjects/Memoria-Proyecto1/cmake-build-debug/CMakeFiles/Cliente_autogen.dir
