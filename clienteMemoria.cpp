@@ -3,6 +3,11 @@
 //
 
 #include "clienteMemoria.h"
+
+
+/**
+ * Este metodo crea la conexion con el otro ejecutble y lo hace como servidor.
+ */
 void clienteMemoria::Cliente(){
     server = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
     addr.sin_addr.s_addr = inet_addr("127.0.0.1");
@@ -13,6 +18,9 @@ void clienteMemoria::Cliente(){
     conectado = true;
     boton_conectar->setEnabled(false);
 }
+/**
+ * Se encarga de enviar los datos al otro ejecutable.
+ */
 void clienteMemoria::Enviar()
 {
 
@@ -29,6 +37,9 @@ void clienteMemoria::Enviar()
     tarjetas_destapadas.append(escogencia);
 
 }
+/**
+ * Este metodo recibe los datos del otro ejecutable
+ */
 void clienteMemoria::Recibir()
 {
     recv(server, buffer, sizeof(buffer), 0);

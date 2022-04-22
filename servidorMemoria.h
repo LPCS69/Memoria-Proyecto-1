@@ -2,8 +2,8 @@
 // Created by pablo on 8/4/22.
 //
 
-#ifndef MEMORIA_PROYECTO1_SERVIDORMEMEMORIA_H
-#define MEMORIA_PROYECTO1_SERVIDORMEMEMORIA_H
+#ifndef MEMORIA_PROYECTO1_SERVIDORMEMORIA_H
+#define MEMORIA_PROYECTO1_SERVIDORMEMORIA_H
 #include <QString>
 #include <QPushButton>
 #include <QApplication>
@@ -29,7 +29,7 @@
 #include <unistd.h>
 #define PORT 8080
 #include <netdb.h>
-class servidorMememoria: public QMainWindow{
+class servidorMemoria: public QMainWindow{
         Q_OBJECT
         public:
 
@@ -40,8 +40,8 @@ class servidorMememoria: public QMainWindow{
         struct sockaddr_in server_addr;
         struct sockaddr_in client_addr;
         socklen_t size;
-        explicit  servidorMememoria(QWidget *parent = nullptr);
-        virtual ~servidorMememoria();
+        explicit  servidorMemoria(QWidget *parent = nullptr);
+        virtual ~servidorMemoria();
         void barajar();
         void cortar_baraja();
         void remplazo();
@@ -56,16 +56,15 @@ class servidorMememoria: public QMainWindow{
         void cargar_respaldo();
         void encontrar_pareja();
         QWidget ventana;
-        QVector <int> tarjetasTapadas{0,1,2,3,4,5,6,7};
-        QVector <int> encontradas{};
+
         int turno =1;
         int parejas_jugador1 = 0;
         int parejas_jugador2 = 0;
-        QVector <QString> imagenes_enmemoria;
+       QVector <QString> imagenes_enmemoria;
         int imagen_seleccion;
         QString seleccion_jugador;
         QQueue <int> enmemoria;
-        QQueue <QObject> tarjetas_enmemoria;
+
         QVector <QString> tarjetas {"c0","c1","c2","c3","c4","c5","c6","c7","c8","c9",
                                     "c10","c11","c12","c13","c14","c15","c16","c17","c18","c19",
                                     "c20","c21","c22","c23","c24","c25","c26","c27","c28","c29"};
@@ -120,4 +119,4 @@ private slots:
 
 
 
-#endif //MEMORIA_PROYECTO1_SERVIDORMEMEMORIA_H
+#endif //MEMORIA_PROYECTO1_SERVIDORMEMORIA_H

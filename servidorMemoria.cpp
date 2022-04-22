@@ -2,7 +2,7 @@
 // Created by pablo on 8/4/22.
 //
 
-#include "servidorMememoria.h"
+#include "servidorMemoria.h"
 
 
 class tarjeta: public QObject{
@@ -40,7 +40,7 @@ int tarjeta::get_CampoenMemoria(){return campo_enmemoria;}
  * Este metodo se encarga de asignar a una variabnle los datos que no se han cargado en memoria y mostrarlos
  * en una etiqueta.
  */
-void servidorMememoria::mostrar_variables_enDisco() {
+void servidorMemoria::mostrar_variables_enDisco() {
     int cont = 0;
     sin_cargar = "";
     if(enmemoria.empty()){
@@ -63,7 +63,7 @@ void servidorMememoria::mostrar_variables_enDisco() {
  * Este metodo se encarga de mostrar las imagenes que siguen en juego a traves de un label, se muestran en orden vertical
  *
  */
-void servidorMememoria::mostrar_imagenes_enjuego() {
+void servidorMemoria::mostrar_imagenes_enjuego() {
     int cont = 0;
     imagenes_enjuego = "";
         while (cont < tarjetas.length()){
@@ -78,7 +78,7 @@ void servidorMememoria::mostrar_imagenes_enjuego() {
  * para que esten en linea a su imaagen correspondiente
  *
  */
-void servidorMememoria::mostrar_posiciones_asignadas()  {
+void servidorMemoria::mostrar_posiciones_asignadas()  {
     int cont = 0;
     posiciones_asignadas = "";
         while (cont < posiciones_barajadas.length()){
@@ -95,7 +95,7 @@ void servidorMememoria::mostrar_posiciones_asignadas()  {
  * Esta funcion carga de forma aleatoria los valores de las posiciones que siguen en juego, en un vector ajustado al tamaño
  * de la cantidad disponbibles
  */
-void servidorMememoria::barajar() {
+void servidorMemoria::barajar() {
     int num;
     srand(time(NULL));
 
@@ -112,7 +112,7 @@ void servidorMememoria::barajar() {
  * un indice en el vector de vectores con las posiciones este mismo indice coincide con una imagen y asi van a estar vinculadas
  * las imagenes a sus posiciones.
  */
-void servidorMememoria::cortar_baraja() {
+void servidorMemoria::cortar_baraja() {
     QVector <QString> vector_temp;
     int cont = 0;
     while (cont < posiciones_barajadas.length()){
@@ -131,7 +131,7 @@ void servidorMememoria::cortar_baraja() {
  * es necesario que se almacene en este vector.
  * Este metodo carga las posicones indicadas desde el otro ejecutable siempre y cuando haya espacio.
  */
-void servidorMememoria::cargar_datos_enmemoria(){
+void servidorMemoria::cargar_datos_enmemoria(){
     if(!enmemoria.contains(imagen_seleccion)){
     enmemoria.push_front(imagen_seleccion);}
 }
@@ -142,7 +142,7 @@ void servidorMememoria::cargar_datos_enmemoria(){
  * posicion del boton.
  *
  */
-void servidorMememoria::buscar_imagen() {
+void servidorMemoria::buscar_imagen() {
     int cont = 0;
     while (!posiciones_imagenes.value(cont).contains(seleccion_jugador)){
         cont++;
@@ -155,7 +155,7 @@ void servidorMememoria::buscar_imagen() {
  * Para simular la memoria virtual se usa una cola, en el momento que la cantidad de datos cargados excede
  * su limite, se descarga el primero que se ingreso para abrirle campo al nuevo dato que se necesita ingresar.
  */
-void servidorMememoria::remplazo(){
+void servidorMemoria::remplazo(){
     if(!enmemoria.contains(imagen_seleccion)){
     enmemoria.pop_back();
     enmemoria.push_front(imagen_seleccion);
@@ -166,7 +166,7 @@ void servidorMememoria::remplazo(){
  * quitar un dato para que sea visible en la interfaz sin que se quede el dato mostrado en la interfaz, se limpian todos y
  * solo se vuelve a mostrar los datos que siguen cargados en la memoria virtual.
  */
-void servidorMememoria::limpiar_botones(){
+void servidorMemoria::limpiar_botones(){
     boton1->setText("");
     if(espacio_enmemoria > 1  & enmemoria.length()>1){boton2->setText("");}
     if(espacio_enmemoria > 2  & enmemoria.length()>2){boton3->setText("");}
@@ -183,7 +183,7 @@ void servidorMememoria::limpiar_botones(){
  * para mostrar las imagenes, pero al final se dejo solo el nombre de la imagen que se usa para desplegarla, para asi poder
  * ver como se comporta en el resto de la interfaz que se usa para mostrar los cambios hechos por la gestion de memoria.
  */
-void servidorMememoria::refrescar_botones(){
+void servidorMemoria::refrescar_botones(){
     if(!enmemoria.empty()){
     boton1->setText(tarjetas.value(enmemoria.value(0)));}
     if (espacio_enmemoria > 1  & enmemoria.length()>1){boton2->setText(tarjetas.value(enmemoria.value(1)));}
@@ -201,7 +201,7 @@ void servidorMememoria::refrescar_botones(){
  * que tenga un limite, se usa una variable que siempre va ser un tercio de la cantidad de paginas disponibles y se pone la
  * condicion de que en el momento que se rebase dicho limite, se llame el metodo que se encarga del remplazo.
  */
-void servidorMememoria::paginacion(){
+void servidorMemoria::paginacion(){
     if(enmemoria.length()<espacio_enmemoria){
         cargar_datos_enmemoria();
     }
@@ -213,7 +213,7 @@ void servidorMememoria::paginacion(){
  * Para hacer mas visible cuando se reduce ele espacio de la memoria virtual, se quitan el objeto que simula ser un
  * campo en memoria.
  */
-void servidorMememoria::quitar(){
+void servidorMemoria::quitar(){
     if (0<tarjetas.length()){
 
         if (espacio_enmemoria < 10){boton10->close();}; if (espacio_enmemoria < 9){boton9->close();};
@@ -228,7 +228,7 @@ void servidorMememoria::quitar(){
  * Este metodo crea la conexion con el otro ejecutble y lo hace como servidor.
  */
 
-void servidorMememoria::Server() {
+void servidorMemoria::Server() {
     server = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
 
     server_addr.sin_addr.s_addr = INADDR_ANY;
@@ -250,7 +250,7 @@ void servidorMememoria::Server() {
 /**
  * Este metodo recibe los datos del otro ejecutable
  */
-void servidorMememoria::Recibir(){
+void servidorMemoria::Recibir(){
     recv(client, buffer, sizeof(buffer), 0);
 
     * mensaje =NULL;
@@ -264,7 +264,7 @@ void servidorMememoria::Recibir(){
 /**
  * Se encarga de enviar los datos al otro ejecutable.
  */
-void servidorMememoria::Enviar(){
+void servidorMemoria::Enviar(){
     std::string string_temp = tarjetas.value(imagen_seleccion).toStdString();
     char const * char_temp = &string_temp[0];
     strcat(strcpy(buffer, buffer),char_temp );
@@ -288,7 +288,7 @@ void servidorMememoria::Enviar(){
  * se hace un respaldo de las que hay cargadas en memoria, para luegor cargar los indices respecto al nuevo vector que va
  * contener los datos para poder acceder a las imagenes.
  */
-void servidorMememoria::respaldo_imagenesenmemoria(){
+void servidorMemoria::respaldo_imagenesenmemoria(){
     int cont =0;
     while (cont < enmemoria.length()){
         imagenes_enmemoria.append(tarjetas.value(enmemoria.value(cont)));
@@ -299,7 +299,7 @@ void servidorMememoria::respaldo_imagenesenmemoria(){
  * Vuelve a cargar en memoria las posiciones de las imagenes que ya estaban en memoria, respecto al nuevo vector
  * despues de eliminar las imagenes emparejadas.
  */
-void servidorMememoria::cargar_respaldo(){
+void servidorMemoria::cargar_respaldo(){
     int cont = 0;
     while (cont < imagenes_enmemoria.length()){
         enmemoria.append(tarjetas.indexOf(imagenes_enmemoria.value(cont)));
@@ -307,8 +307,13 @@ void servidorMememoria::cargar_respaldo(){
     }
     imagenes_enmemoria.clear();
 }
-
-void servidorMememoria::encontrar_pareja() {
+/**
+ * En este metodo se evalua si las imagenes destapdas por el jugador en turno son iguales, en caso de que lo sean se estaria encontrando una pareja,
+ * entonces se procede a quitar los datos de la pareja encontrada en la interfaz que se usa para mostrar los datos cargados, luego se vuelve reasignar
+ * de forma aleatoria las imagenes resatantes a las tarjetas que siguen en juego.
+ * En caso de que las tarjetas destapadas no sean iguales, se procede a girar los botones que se usaron para destaparlas y que sigan en jugeo con las mismas imagenes.
+ */
+void servidorMemoria::encontrar_pareja() {
     if (tarjetas_seleccionadas.length() == limite_destape){
         if (imagenes_destapadas.value(0)== imagenes_destapadas.value(1)){
             this->limpiar_botones();
@@ -356,7 +361,7 @@ void servidorMememoria::encontrar_pareja() {
     }
 }
 
-servidorMememoria::servidorMememoria(QWidget *parent): QMainWindow(parent) {
+servidorMemoria::servidorMemoria(QWidget *parent): QMainWindow(parent) {
 
     ventana.resize(650, 720);
     ventana.setStyleSheet("QWidget {background-color:black}");
@@ -401,7 +406,6 @@ servidorMememoria::servidorMememoria(QWidget *parent): QMainWindow(parent) {
     label_jugador2->setStyleSheet("QWidget {color:blue}");
 
     QSize sizeButton(75,80);
- //   this->referencias_posiciones();
 
     boton1 ->move(300,90);boton1->setFixedSize(sizeButton);boton1->setStyleSheet("QWidget {background-color:green}");
     boton2 ->move(300,205);boton2->setFixedSize(sizeButton);boton2->setStyleSheet("QWidget {background-color:green}");
@@ -437,4 +441,4 @@ servidorMememoria::servidorMememoria(QWidget *parent): QMainWindow(parent) {
     connect(boton_conectar, SIGNAL (clicked()), this, SLOT(Server()));
     ventana.show();
 }
-servidorMememoria::~servidorMememoria(){}
+servidorMemoria::~servidorMemoria(){}

@@ -6,7 +6,7 @@ set(CMAKE_AUTOMOC ON)
 
 add_executable(Memoria_Proyecto1)
 
-add_executable(Servidor MAINservidor.cpp servidorMememoria.cpp servidorMememoria.h)
+add_executable(Servidor MAINservidor.cpp servidorMemoria.cpp servidorMemoria.h)
 
 add_executable(Cliente MAINcliente.cpp clienteMemoria.cpp clienteMemoria.h)
 

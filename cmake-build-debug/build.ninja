@@ -99,9 +99,9 @@ build CMakeFiles/Servidor.dir/MAINservidor.cpp.o: CXX_COMPILER__Servidor_Debug /
   OBJECT_DIR = CMakeFiles/Servidor.dir
   OBJECT_FILE_DIR = CMakeFiles/Servidor.dir
 
-build CMakeFiles/Servidor.dir/servMem.cpp.o: CXX_COMPILER__Servidor_Debug /home/pablo/CLionProjects/Memoria-Proyecto1/servMem.cpp || cmake_object_order_depends_target_Servidor
+build CMakeFiles/Servidor.dir/servidorMemoria.cpp.o: CXX_COMPILER__Servidor_Debug /home/pablo/CLionProjects/Memoria-Proyecto1/servidorMemoria.cpp || cmake_object_order_depends_target_Servidor
   DEFINES = -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB
-  DEP_FILE = CMakeFiles/Servidor.dir/servMem.cpp.o.d
+  DEP_FILE = CMakeFiles/Servidor.dir/servidorMemoria.cpp.o.d
   FLAGS = -g -fPIC -std=gnu++17
   INCLUDES = -I/home/pablo/CLionProjects/Memoria-Proyecto1/cmake-build-debug/Servidor_autogen/include -isystem /usr/include/x86_64-linux-gnu/qt5 -isystem /usr/include/x86_64-linux-gnu/qt5/QtCore -isystem /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -isystem /usr/include/x86_64-linux-gnu/qt5/QtWidgets -isystem /usr/include/x86_64-linux-gnu/qt5/QtGui
   OBJECT_DIR = CMakeFiles/Servidor.dir
@@ -115,7 +115,7 @@ build CMakeFiles/Servidor.dir/servMem.cpp.o: CXX_COMPILER__Servidor_Debug /home/
 #############################################
 # Link the executable Servidor
 
-build Servidor: CXX_EXECUTABLE_LINKER__Servidor_Debug CMakeFiles/Servidor.dir/Servidor_autogen/mocs_compilation.cpp.o CMakeFiles/Servidor.dir/MAINservidor.cpp.o CMakeFiles/Servidor.dir/servMem.cpp.o | /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.12.8 /usr/lib/x86_64-linux-gnu/libQt5Gui.so.5.12.8 /usr/lib/x86_64-linux-gnu/libQt5Core.so.5.12.8 || Servidor_autogen
+build Servidor: CXX_EXECUTABLE_LINKER__Servidor_Debug CMakeFiles/Servidor.dir/Servidor_autogen/mocs_compilation.cpp.o CMakeFiles/Servidor.dir/MAINservidor.cpp.o CMakeFiles/Servidor.dir/servidorMemoria.cpp.o | /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.12.8 /usr/lib/x86_64-linux-gnu/libQt5Gui.so.5.12.8 /usr/lib/x86_64-linux-gnu/libQt5Core.so.5.12.8 || Servidor_autogen
   FLAGS = -g
   LINK_LIBRARIES = /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.12.8  /usr/lib/x86_64-linux-gnu/libQt5Gui.so.5.12.8  /usr/lib/x86_64-linux-gnu/libQt5Core.so.5.12.8
   OBJECT_DIR = CMakeFiles/Servidor.dir
@@ -149,9 +149,9 @@ build CMakeFiles/Cliente.dir/MAINcliente.cpp.o: CXX_COMPILER__Cliente_Debug /hom
   OBJECT_DIR = CMakeFiles/Cliente.dir
   OBJECT_FILE_DIR = CMakeFiles/Cliente.dir
 
-build CMakeFiles/Cliente.dir/clienteMem.cpp.o: CXX_COMPILER__Cliente_Debug /home/pablo/CLionProjects/Memoria-Proyecto1/clienteMem.cpp || cmake_object_order_depends_target_Cliente
+build CMakeFiles/Cliente.dir/clienteMemoria.cpp.o: CXX_COMPILER__Cliente_Debug /home/pablo/CLionProjects/Memoria-Proyecto1/clienteMemoria.cpp || cmake_object_order_depends_target_Cliente
   DEFINES = -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB
-  DEP_FILE = CMakeFiles/Cliente.dir/clienteMem.cpp.o.d
+  DEP_FILE = CMakeFiles/Cliente.dir/clienteMemoria.cpp.o.d
   FLAGS = -g -fPIC -std=gnu++17
   INCLUDES = -I/home/pablo/CLionProjects/Memoria-Proyecto1/cmake-build-debug/Cliente_autogen/include -isystem /usr/include/x86_64-linux-gnu/qt5 -isystem /usr/include/x86_64-linux-gnu/qt5/QtCore -isystem /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -isystem /usr/include/x86_64-linux-gnu/qt5/QtWidgets -isystem /usr/include/x86_64-linux-gnu/qt5/QtGui
   OBJECT_DIR = CMakeFiles/Cliente.dir
@@ -165,7 +165,7 @@ build CMakeFiles/Cliente.dir/clienteMem.cpp.o: CXX_COMPILER__Cliente_Debug /home
 #############################################
 # Link the executable Cliente
 
-build Cliente: CXX_EXECUTABLE_LINKER__Cliente_Debug CMakeFiles/Cliente.dir/Cliente_autogen/mocs_compilation.cpp.o CMakeFiles/Cliente.dir/MAINcliente.cpp.o CMakeFiles/Cliente.dir/clienteMem.cpp.o | /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.12.8 /usr/lib/x86_64-linux-gnu/libQt5Gui.so.5.12.8 /usr/lib/x86_64-linux-gnu/libQt5Core.so.5.12.8 || Cliente_autogen
+build Cliente: CXX_EXECUTABLE_LINKER__Cliente_Debug CMakeFiles/Cliente.dir/Cliente_autogen/mocs_compilation.cpp.o CMakeFiles/Cliente.dir/MAINcliente.cpp.o CMakeFiles/Cliente.dir/clienteMemoria.cpp.o | /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.12.8 /usr/lib/x86_64-linux-gnu/libQt5Gui.so.5.12.8 /usr/lib/x86_64-linux-gnu/libQt5Core.so.5.12.8 || Cliente_autogen
   FLAGS = -g
   LINK_LIBRARIES = /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.12.8  /usr/lib/x86_64-linux-gnu/libQt5Gui.so.5.12.8  /usr/lib/x86_64-linux-gnu/libQt5Core.so.5.12.8
   OBJECT_DIR = CMakeFiles/Cliente.dir

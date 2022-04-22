@@ -79,9 +79,9 @@
 	"HEADERS" : 
 	[
 		[
-			"/home/pablo/CLionProjects/Memoria-Proyecto1/clienteMem.h",
+			"/home/pablo/CLionProjects/Memoria-Proyecto1/clienteMemoria.h",
 			"Mu",
-			"EWIEGA46WW/moc_clienteMem.cpp",
+			"EWIEGA46WW/moc_clienteMemoria.cpp",
 			null
 		]
 	],
@@ -145,7 +145,7 @@
 			null
 		],
 		[
-			"/home/pablo/CLionProjects/Memoria-Proyecto1/clienteMem.cpp",
+			"/home/pablo/CLionProjects/Memoria-Proyecto1/clienteMemoria.cpp",
 			"Mu",
 			null
 		]
